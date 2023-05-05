@@ -1,7 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
-// const generateMarkdown = require('./utils/generateMarkdown');
+const generateMarkdown = require('./utils/generateMarkdown');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -14,11 +14,6 @@ const questions = [
         type: 'input',
         name: 'Description',
         message: 'Please provide a detailed description of your project.'
-    },
-    {
-        type: 'list',
-        name: 'Table of Contents',
-        message: 'Select a link in the Table of Content to navigate to your desired section'
     },
     {
         type: 'input',
@@ -34,7 +29,7 @@ const questions = [
         type: 'list',
         name: 'License',
         message: 'Select a license for your application from the following list of options',
-        choices: [1, 2, 3, 4]
+        choices: ["MIT", "Apache", "Boost", "BSD 3-Clause", "None"]
     },
     {
         type: 'iput',
@@ -49,20 +44,20 @@ const questions = [
     {
         type: 'input',
         name: 'Questions',
-        message: 'Enter your Github Username'
+        message: 'Enter your Github Username:'
     },
     {
         type: 'input',
         name: 'Questions',
-        message: 'Enter your Email Address'
+        message: 'Enter your Email Address:'
     },
 ];
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    const fileName = generateMarkdown(data);
+    // const fileName = generateMarkdown(data);
 
-    fs.writeFile('README.md', fileName, (err) =>
+    fs.writeFile('README.md', generateMarkdown(data), (err) =>
         err ? console.log(err) : console.log('Successfully created README.md file!')
     );
 }
@@ -70,7 +65,7 @@ function writeToFile(fileName, data) {
 // TODO: Create a function to initialize app
 function init() {
     inquirer.prompt(questions)
-    .then((data) => writeFile('README.md', generateMarkdown(data)))
+    .then((data) => writeToFile('README.md', generateMarkdown(data)))
     .then(() => console.log('Successfully wrote to README.md'))
     .catch((err) => console.error(err));
  }
