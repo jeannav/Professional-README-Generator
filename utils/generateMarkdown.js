@@ -1,38 +1,79 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
+// function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
-function renderLicenseBadge(License) {
-  if (data.License === false) {
-    return '';
+function renderLicenseBadge(license) {
+  let licenseInput = license
+  let yourLicense = ''
+  if (licenseInput == 'MIT') {
+    yourLicense = '![MIT](https://img.shields.io/badge/License-MIT-yellow.svg)'
+  } else if (licenseInput == 'GPLv3') {
+    yourLicense = '![GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg)'
+  } else if (licenseInput == 'GPLv2') {
+    yourLicense = '![GPLv2](https://img.shields.io/badge/License-GPL_v2-blue.svg)'
   } else {
-    return '?????';
+    yourLicense = ''
+  }
+  return yourLicense;
+};
+// function that returns the license link
+// If there is no license, return an empty string
+function renderLicenseLink(license) {
+  if (license != 'N/A') {
+    return `[License](#license)`;
+  } else {
+    return '';
   }
 }
 
-// TODO: Create a function that returns the license link
+// function that returns the license section of README
 // If there is no license, return an empty string
-function renderLicenseLink(License) {
-  if (data.License === false){
-    return '';
+function renderLicenseSection(license) {
+  if (license != 'N/A') {
+    return `
+    ## License
+    ${license}`
   } else {
-    return '?????';
+    return '';
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(License) {
-  if (data.License === false){
-    return '';
-  } else {
-    return '????';
-  }
-}
-
-// TODO: Create a function to generate markdown for README
+// function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.Title}
- ???????????
+  return `
+# ${data.title}
+
+${renderLicenseBadge(data.license)}
+
+##Description
+
+${data.description}
+
+## Table of Contents
+- [Installation](#installation)
+- [Usage](#usage)
+- [Test Instructions](#test-instructions)
+- [Contributors](#contributors)
+- ${renderLicenseLink(data.license)}
+- [Links](#links)
+
+## Installation
+${data.installation}
+
+## Usage
+${data.usage}
+
+## Test Instructions
+${data.tests}
+
+## Contributors
+${data.contributing}
+
+${renderLicenseSection(data.license)}
+
+## Links
+- [GitHub-Repo](${data.repoLink})
+- [Email](${data.email})
 `;
+
 }
 
 module.exports = generateMarkdown;

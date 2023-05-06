@@ -10,14 +10,5 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "8.2.4"
-  },
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jeannav/Professional-README-Generator.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jeannav/Professional-README-Generator/issues"
-  },
-  "homepage": "https://github.com/jeannav/Professional-README-Generator#readme"
+  }
 }
